@@ -1,2 +1,2 @@
 nginx: srcs/requirements/nginx/Dockerfile
-	docker build -t nginx .srcs/requirements/nginx/.
+	docker build -t nginx srcs/requirements/nginx/.
