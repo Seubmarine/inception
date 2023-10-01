@@ -1,10 +1,12 @@
 FROM debian:bullseye
-RUN apt update && apt upgrade
 
+RUN apt update && apt upgrade
 RUN apt install openssl nginx -y openssl
+
+RUN openssl req -batch -nodes -new -x509 -keyout /etc/nginx/server.key -out /etc/nginx/server.crt
 
 COPY ./configuration/nginx.conf /etc/nginx/nginx.conf
 
-ENTRYPOINT [ "nginx" ]
-
 EXPOSE 443
+
+CMD [ "nginx", "-g", "daemon off;" ]
