@@ -1,3 +1,5 @@
+version: '3'
+
 services:
   nginx:
     build: requirements/nginx/
@@ -5,8 +7,19 @@ services:
     ports:
       - "443:443"
     restart: always
-  
+    env_file:
+      - .env
+
   wordpress:
     build: requirements/wordpress
     container_name: wordpress
     restart: always
+    env_file:
+      - .env
+
+  mariadb:
+    build: requirements/mariadb
+    container_name: mariadb
+    restart: always
+    env_file:
+      - .env
