@@ -1,7 +1,7 @@
 FROM debian:bullseye
 
-RUN apt update && apt upgrade
-RUN apt install wordpress php-fpm php-mysql wget -y
+RUN apt-get update -y && apt-get upgrade -y
+RUN apt-get install wordpress php-fpm php-mysql wget -y
 
 RUN mkdir -p /var/www/html/exemple.fr
 
