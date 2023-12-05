@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
+sleep 10
 
 echo "Lancement script wordpress"
-
 	wp core download --allow-root --locale=fr_FR --path='/var/www/html'
 	sleep 5
 	wp config create --allow-root --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_USER \
@@ -16,7 +16,9 @@ echo "Lancement script wordpress"
 	sleep 2
 	wp user create --allow-root --role=author $WP_USER $WP_USER_EMAIL \
 				--user_pass=$WP_USER_PASSWORD --path='/var/www/html'
-    
+mkdir -p /run/php/7.4/fpm
+chown -R www-data:www-data /run/php/7.4/fpm
+chown -R www-data:www-data /var//www/*
+chmod -R 755 /var/www/*
 
 /usr/sbin/php-fpm7.4 -F
-#exec "$@"
