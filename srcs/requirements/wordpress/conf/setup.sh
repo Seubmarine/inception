@@ -1,0 +1,22 @@
+#!/bin/sh
+
+
+echo "Lancement script wordpress"
+
+	wp core download --allow-root --locale=fr_FR --path='/var/www/html'
+	sleep 5
+	wp config create --allow-root --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_USER \
+				--dbpass=$MYSQL_PASSWORD --dbhost=mariadb:3306 \
+				--path='/var/www/html'
+	sleep 2
+	wp core install --url=$DOMAIN_NAME --title=$WEBSITE_NAME \
+				--admin_user=$WP_ADMIN --admin_password=$WP_ADMIN_PASSWORD \
+				--admin_email=$WP_ADMIN_EMAIL --skip-email --allow-root \
+				 --path='/var/www/html'
+	sleep 2
+	wp user create --allow-root --role=author $WP_USER $WP_USER_EMAIL \
+				--user_pass=$WP_USER_PASSWORD --path='/var/www/html'
+    
+
+/usr/sbin/php-fpm7.4 -F
+#exec "$@"
