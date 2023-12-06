@@ -11,4 +11,4 @@ COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 COPY ./tools/config.sh /usr/local/bin/config.sh
 RUN chmod +x /usr/local/bin/config.sh
 
-ENTRYPOINT [ "/usr/local/bin/config.sh" ]
+CMD [ "/usr/local/bin/config.sh" ]

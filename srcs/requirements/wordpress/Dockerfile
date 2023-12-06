@@ -26,3 +26,5 @@ COPY tools/config.sh /usr/local/bin/config.sh
 RUN chmod +x /usr/local/bin/config.sh
 
 ENTRYPOINT [ "/usr/local/bin/config.sh" ]
+
+CMD ["/usr/sbin/php-fpm7.4", "-F"]
