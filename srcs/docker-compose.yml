@@ -20,7 +20,7 @@ services:
       - inception_network
     build: requirements/wordpress
     container_name: wordpress
-    restart: always
+    restart: on-failure
     expose:
       - "9000"
     env_file:
@@ -37,7 +37,7 @@ services:
     container_name: nginx
     ports:
       - "443:443"
-    restart: always
+    restart: on-failure
     env_file:
       - .env
     depends_on: 
